@@ -1,0 +1,26 @@
+name: Dispatch Autoheal (to tests repo)
+
+on:
+  push:
+    branches: ['**']         # any branch; change to ['main'] if you prefer
+    paths-ignore:
+      - '**.md'
+  pull_request:
+    branches: ['**']
+    paths-ignore:
+      - '**.md'
+
+jobs:
+  notify-tests-repo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send repository_dispatch to Automation-test-framework-HOB
+        env:
+          TOKEN: ${{ secrets.AUTOHEAL_TOKEN }}
+        run: |
+          set -euo pipefail
+          curl -sS -X POST \
+            -H "Authorization: token ${TOKEN}" \
+            -H "Accept: application/vnd.github+json" \
+            https://api.github.com/repos/idcmurali1/Automation-test-framework-HOB/dispatches \
+            -d "{\"event_type\":\"app_change\",\"client_payload\":{\"ref\":\"${GITHUB_SHA}\",\"branch\":\"${GITHUB_REF_NAME}\"}}"
