@@ -1,13 +1,31 @@
-- name: Send repository_dispatch to Automation-test-framework-HOB
-  env:
-    AUTOHEAL_TOKEN: ${{ secrets.AUTOHEAL_TOKEN }}          # PAT with repo + workflow
-    BRANCH: ${{ github.head_ref || github.ref_name }}      # works for PRs and pushes
-    SHA:    ${{ github.sha }}
-  run: |
-    set -euo pipefail
-    echo "Dispatching branch=${BRANCH} sha=${SHA}"
-    curl -sS -X POST \
-      -H "Authorization: token ${AUTOHEAL_TOKEN}" \
-      -H "Accept: application/vnd.github+json" \
-      https://api.github.com/repos/idcmurali1/Automation-test-framework-HOB/dispatches \
-      -d "{\"event_type\":\"app_change\",\"client_payload\":{\"branch\":\"${BRANCH}\",\"sha\":\"${SHA}\"}}"
+name: Dispatch Autoheal (to tests repo)
+
+on:
+  pull_request:
+    branches: ['**']
+    paths-ignore: ['**.md']
+  push:
+    branches: ['**']
+    paths-ignore: ['**.md']
+
+jobs:
+  notify-tests-repo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send repository_dispatch to Automation-test-framework-HOB
+        env:
+          AUTOHEAL_TOKEN: ${{ secrets.AUTOHEAL_TOKEN }}          # classic PAT with repo + workflow
+          BRANCH: ${{ github.head_ref || github.ref_name }}      # works for PRs and pushes
+          SHA:    ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          echo "Dispatching branch=${BRANCH} sha=${SHA}"
+          RESP=$(mktemp)
+          CODE=$(curl -sS -w "%{http_code}" -o "$RESP" -X POST \
+            -H "Authorization: token ${AUTOHEAL_TOKEN}" \
+            -H "Accept: application/vnd.github+json" \
+            https://api.github.com/repos/idcmurali1/Automation-test-framework-HOB/dispatches \
+            -d "{\"event_type\":\"app_change\",\"client_payload\":{\"branch\":\"${BRANCH}\",\"sha\":\"${SHA}\"}}")
+          echo "HTTP ${CODE}"
+          echo "Response body:"; cat "$RESP"
+          test "$CODE" = "204" || { echo "Dispatch failed"; exit 1; }
