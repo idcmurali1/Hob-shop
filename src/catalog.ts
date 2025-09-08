@@ -33,7 +33,7 @@ export const CATALOG: Product[] = [
     title: 'HOB Graphic Tee', 
     price: 27, 
     image: 'https://picsum.photos/seed/shirt/640/420',
-    testID: 'product_sku_shirt' 
+    testID: 'product_sku_shirt_val1' 
   },
   { 
     id: 'sku_headphones', 
