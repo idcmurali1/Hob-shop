@@ -19,7 +19,7 @@ export const CATALOG: Product[] = [
     title: 'HOB Dad Cap', 
     price: 22, 
     image: 'https://picsum.photos/seed/cap/640/420',
-    testID: 'product_sku_cap_val2' 
+    testID: 'product_sku_cap_val3' 
   },
   { 
     id: 'sku_bottle', 
