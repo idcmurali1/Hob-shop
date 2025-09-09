@@ -26,7 +26,7 @@ export const CATALOG: Product[] = [
     title: 'HOB Insulated Bottle', 
     price: 28, 
     image: 'https://picsum.photos/seed/bottle/640/420',
-    testID: 'product_sku_bottle' 
+    testID: 'product_sku_bottle_val1' 
   },
   { 
     id: 'sku_shirt', 
