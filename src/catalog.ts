@@ -29,6 +29,13 @@ export const CATALOG: Product[] = [
     testID: 'product_sku_mug' 
   },
   { 
+    id: 'sku_flower', 
+    title: 'HOB flower', 
+    price: 22, 
+    image: 'https://picsum.photos/seed/cap/640/420',
+    testID: 'product_sku_flower' 
+  },
+  { 
     id: 'sku_bottle', 
     title: 'HOB Insulated Bottle', 
     price: 28, 
