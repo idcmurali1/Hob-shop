@@ -12,7 +12,7 @@ export const CATALOG: Product[] = [
     title: 'HOB elite sweatshirt', 
     price: 49, 
     image: 'https://picsum.photos/seed/hoodie/640/420',
-    testID: 'product_sku_hoodie_5454'      // 👈 unique testID
+    testID: 'product_sku_hoodie_7454'      // 👈 unique testID
   },
   { 
     id: 'sku_cap', 
@@ -26,14 +26,14 @@ export const CATALOG: Product[] = [
     title: 'HOB Dad mug', 
     price: 22, 
     image: 'https://picsum.photos/seed/cap/640/420',
-    testID: 'product_sku_mug' 
+    testID: 'product_sku_basha' 
   },
   { 
     id: 'sku_flower', 
     title: 'HOB flower', 
     price: 22, 
     image: 'https://picsum.photos/seed/cap/640/420',
-    testID: 'product_sku_flower' 
+    testID: 'product_sku_rope' 
   },
   { 
     id: 'sku_bottle', 
