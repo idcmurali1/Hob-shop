@@ -12,7 +12,7 @@ export const CATALOG: Product[] = [
     title: 'HOB elite sweatshirt', 
     price: 49, 
     image: 'https://picsum.photos/seed/hoodie/640/420',
-    testID: 'product_sku_hoodie_8777'      // 👈 unique testID
+    testID: 'product_sku_hoodie_9898'      // 👈 unique testID
   },
   { 
     id: 'sku_cap', 
